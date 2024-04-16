@@ -54,19 +54,19 @@ spec:
   selector:
     app: nginx
   type: ClusterIP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx
-  annotations:
-    kubernetes.io/ingress.class: kong
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix  # Specify the pathType here
-        backend:
-          serviceName: nginx
-          servicePort: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: nginx
+#   annotations:
+#     kubernetes.io/ingress.class: kong
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix  # Specify the pathType here
+#         backend:
+#           serviceName: nginx
+#           servicePort: 80
