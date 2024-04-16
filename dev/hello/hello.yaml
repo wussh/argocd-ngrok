@@ -72,7 +72,7 @@ metadata:
   name: example-ingress
   namespace: ngrok-ingress-controller
   annotations:
-    k8s.ngrok.com/modules: ngrok-module-set
+    k8s.ngrok.com/modules: oauth-and-circuit-breaking
 spec:
   ingressClassName: ngrok
   rules:

@@ -32,43 +32,38 @@ spec:
           ports:
             - name: http
               containerPort: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: game-2048-ingress
-#   namespace: ngrok-ingress-controller
-#   annotations:
-#     k8s.ngrok.com/modules: oauth-and-circuit-breaking
-# spec:
-#   ingressClassName: ngrok
-#   rules:
-#     - host: pheasant-closing-wolf.ngrok-free.app
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: game-2048
-#                 port:
-#                   number: 80
-# ---
-# # Module configurations for Circuit Breaking and OAuth
-# kind: NgrokModuleSet
-# apiVersion: ingress.k8s.ngrok.com/v1alpha1
-# metadata:
-#   name: oauth-and-circuit-breaking
-#   namespace: ngrok-ingress-controller
-# modules:
-#   circuitBreaker:
-#     trippedDuration: 10s
-#     rollingWindow: 10s
-#     numBuckets: 10
-#     volumeThreshold: 20
-#     errorThresholdPercentage: "0.50"
-#   oauth:
-#     google:
-#       emailDomains:
-#         - acme.com
-#         - ngrok.com
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: game-2048-ingress
+  namespace: ngrok-ingress-controller
+  annotations:
+    k8s.ngrok.com/modules: oauth-and-circuit-breaking
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: pheasant-closing-wolf.ngrok-free.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: game-2048
+                port:
+                  number: 80
+---
+# Module configurations for Circuit Breaking and OAuth
+kind: NgrokModuleSet
+apiVersion: ingress.k8s.ngrok.com/v1alpha1
+metadata:
+  name: oauth-and-circuit-breaking
+  namespace: ngrok-ingress-controller
+modules:
+  circuitBreaker:
+    trippedDuration: 10s
+    rollingWindow: 10s
+    numBuckets: 10
+    volumeThreshold: 20
+    errorThresholdPercentage: "0.50"
