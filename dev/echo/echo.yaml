@@ -71,10 +71,10 @@ metadata:
 spec:
   ingressClassName: kong
   rules:
-  - host: kong.example
+  - host: 1f86-103-165-227-170.ngrok-free.app
     http:
       paths:
-      - path: /echo
+      - path: /
         pathType: ImplementationSpecific
         backend:
           service:
