@@ -60,7 +60,7 @@ spec:
   selector:
     app: hello-world-2
   ports:
-    - name: http
+    - name: http1
       port: 80
       targetPort: 8080
 ---
