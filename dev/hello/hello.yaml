@@ -80,14 +80,28 @@ spec:
       http:
         paths:
           - path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: web
                 port:
                   number: 80
-          - path: /hello
-            pathType: ImplementationSpecific
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress-2
+  namespace: ngrok-ingress-controller
+  annotations:
+    k8s.ngrok.com/modules: oauth-and-circuit-breaking
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: pheasant-closing-wolf.ngrok-free.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
             backend:
               service:
                 name: web2
