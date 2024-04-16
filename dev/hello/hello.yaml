@@ -80,19 +80,19 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: web
                 port:
                   number: 80
           - path: /hello
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: web2
                 port:
-                  number: 8080
+                  number: 80
 ---
 kind: NgrokModuleSet
 apiVersion: ingress.k8s.ngrok.com/v1alpha1
