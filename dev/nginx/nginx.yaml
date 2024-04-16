@@ -1,14 +1,14 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: index-html-configmap1.yaml
-#   namespace: default
-# data:
-#   index.html: |
-#     <html>
-#     <h1> Welcome there! This is Deployment One, acting as the clothing 👔 and accessories 👓 website. </h1>
-#     </html
-# ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index-html-configmap1
+  namespace: default
+data:
+  index.html: |
+    <html>
+    <h1>Welcome there! This is Deployment One, acting as the clothing 👔 and accessories 👓 website.</h1>
+    </html>
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,21 +25,19 @@ spec:
       containers:
       - name: nginx
         image: nginx:latest
-        # resources:
-        #   limits:
-        #     memory: "128Mi"
-        #     cpu: "500m"
         ports:
         - name: app-port
           containerPort: 80
+        # Uncomment the following lines if you want to mount the index.html from ConfigMap
         # volumeMounts:
-        #     - name: nginx-index-file
-        #       mountPath: usr/share/nginx/html/index.html
-        #       subPath: index.html
-        # volume:
-        #   - name: nginx-index-file
-        #     cofigMap:
-        #       name: index-html-configmap1.yaml
+        # - name: nginx-index-file
+        #   mountPath: /usr/share/nginx/html/index.html
+        #   subPath: index.html
+      # Uncomment the following section if you want to use a ConfigMap volume
+      # volumes:
+      # - name: nginx-index-file
+      #   configMap:
+      #     name: index-html-configmap1
 ---
 apiVersion: v1
 kind: Service
@@ -57,7 +55,7 @@ spec:
     app: nginx
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx
@@ -68,6 +66,7 @@ spec:
   - http:
       paths:
       - path: /
+        pathType: Prefix  # Specify the pathType here
         backend:
           serviceName: nginx
           servicePort: 80
