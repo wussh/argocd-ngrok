@@ -71,7 +71,6 @@ kind: Ingress
 metadata:
   name: example-ingress
   namespace: ngrok-ingress-controller
-  edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
   annotations:
     k8s.ngrok.com/modules: oauth-and-circuit-breaking
 spec:
