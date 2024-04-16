@@ -69,7 +69,7 @@ kind: Ingress
 metadata:
   name: example-ingress
   annotations:
-    k8s.ngrok.com/modules: oauth-and-circuit-breaking
+    k8s.ngrok.com/modules: ngrok-module-set
 spec:
   ingressClassName: ngrok
   rules:
