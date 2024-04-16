@@ -86,25 +86,18 @@ spec:
                 name: web
                 port:
                   number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: example-ingress-2
-  namespace: ngrok-ingress-controller
-  annotations:
-    k8s.ngrok.com/modules: oauth-and-circuit-breaking
-spec:
-  ingressClassName: ngrok
-  rules:
-    - host: pheasant-closing-wolf.ngrok-free.app
-      http:
-        paths:
           - path: /hello
             pathType: Prefix
             backend:
               service:
                 name: web2
+                port:
+                  number: 80
+          - path: /game
+            pathType: Prefix
+            backend:
+              service:
+                name: game-2048
                 port:
                   number: 80
 ---
