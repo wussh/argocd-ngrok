@@ -61,23 +61,23 @@ spec:
               fieldRef:
                 fieldPath: status.podIP
         resources: {}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: echo
-  annotations:
-    konghq.com/strip-path: 'true'
-spec:
-  ingressClassName: kong
-  rules:
-  - host: 1f86-103-165-227-170.ngrok-free.app
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: echo
-            port:
-              number: 1027
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: echo
+#   annotations:
+#     konghq.com/strip-path: 'true'
+# spec:
+#   ingressClassName: kong
+#   rules:
+#   - host: 1f86-103-165-227-170.ngrok-free.app
+#     http:
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#             name: echo
+#             port:
+#               number: 1027
