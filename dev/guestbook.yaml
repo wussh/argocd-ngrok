@@ -38,7 +38,8 @@ metadata:
 spec:
   ingressClassName: kong
   rules:
-  - http:
+  - host: 1f86-103-165-227-170.ngrok-free.app
+    http:
       paths:
       - path: /
         pathType: Prefix
