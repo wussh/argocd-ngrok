@@ -57,23 +57,19 @@ spec:
     app: nginx
   type: ClusterIP
 ---
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: web-ingress
-  labels:
-    name: web-ingress
+  name: nginx
+  annotations:
+    kubernetes.io/ingress.class: kong
 spec:
-  ingressClassName: kong
   rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nginx
-                port:
-                  name: svc-port
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
 
 
