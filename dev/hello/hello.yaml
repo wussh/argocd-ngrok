@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: web
   namespace: ngrok-ingress-controller
+  labels:
+    edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
 spec:
   replicas: 1
   selector:
@@ -12,6 +14,7 @@ spec:
     metadata:
       labels:
         app: hello-world
+        edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
     spec:
       containers:
       - name: web
@@ -24,6 +27,8 @@ kind: Deployment
 metadata:
   name: web2
   namespace: ngrok-ingress-controller
+  labels:
+    edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
 spec:
   replicas: 1
   selector:
@@ -33,6 +38,7 @@ spec:
     metadata:
       labels:
         app: hello-world-2
+        edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
     spec:
       containers:
       - name: web2
@@ -45,6 +51,8 @@ kind: Service
 metadata:
   name: web
   namespace: ngrok-ingress-controller
+  labels:
+    edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
 spec:
   selector:
     app: hello-world
@@ -58,6 +66,8 @@ kind: Service
 metadata:
   name: web2
   namespace: ngrok-ingress-controller
+  labels:
+    edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
 spec:
   selector:
     app: hello-world-2
@@ -71,6 +81,8 @@ kind: Ingress
 metadata:
   name: example-ingress
   namespace: ngrok-ingress-controller
+  labels:
+    edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
   annotations:
     k8s.ngrok.com/modules: oauth-and-circuit-breaking
 spec:
@@ -94,12 +106,13 @@ spec:
                 port:
                   number: 80
 ---
-# Module configurations for Circuit Breaking and OAuth
 kind: NgrokModuleSet
 apiVersion: ingress.k8s.ngrok.com/v1alpha1
 metadata:
   name: oauth-and-circuit-breaking
   namespace: ngrok-ingress-controller
+  labels:
+    edge: edghts_2fAkCbFzgJe4SKY0n9ypbzmp5hM
 modules:
   circuitBreaker:
     trippedDuration: 10s
