@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ngrok-ingress-controller
+  namespace: argocd
+spec:
+  destination:
+    namespace: ngrok-ingress-controller
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    helm:
+      valueFiles:
+        - values.yaml
+    repoURL: 'https://ngrok.github.io/kubernetes-ingress-controller'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
