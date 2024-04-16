@@ -110,5 +110,5 @@ modules:
   oauth:
     google:
       emailDomains:
-        - acme.com
+        - gmail.com
         - ngrok.com
