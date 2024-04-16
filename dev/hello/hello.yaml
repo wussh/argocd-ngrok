@@ -100,7 +100,7 @@ spec:
     - host: pheasant-closing-wolf.ngrok-free.app
       http:
         paths:
-          - path: /
+          - path: /hello
             pathType: Prefix
             backend:
               service:
