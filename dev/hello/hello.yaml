@@ -83,7 +83,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: web
+                name: webguestbook-ui
                 port:
                   number: 80
           # - path: /hello
