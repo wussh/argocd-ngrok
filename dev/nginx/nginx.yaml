@@ -1,14 +1,14 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: index-html-configmap1.yaml
-  namespace: default
-data:
-  index.html: |
-    <html>
-    <h1> Welcome there! This is Deployment One, acting as the clothing 👔 and accessories 👓 website. </h1>
-    </html
----
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: index-html-configmap1.yaml
+#   namespace: default
+# data:
+#   index.html: |
+#     <html>
+#     <h1> Welcome there! This is Deployment One, acting as the clothing 👔 and accessories 👓 website. </h1>
+#     </html
+# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,14 +32,14 @@ spec:
         ports:
         - name: app-port
           containerPort: 80
-        volumeMounts:
-            - name: nginx-index-file
-              mountPath: usr/share/nginx/html/index.html
-              subPath: index.html
-        volume:
-          - name: nginx-index-file
-            cofigMap:
-              name: index-html-configmap1.yaml
+        # volumeMounts:
+        #     - name: nginx-index-file
+        #       mountPath: usr/share/nginx/html/index.html
+        #       subPath: index.html
+        # volume:
+        #   - name: nginx-index-file
+        #     cofigMap:
+        #       name: index-html-configmap1.yaml
 ---
 apiVersion: v1
 kind: Service
