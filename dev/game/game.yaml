@@ -43,7 +43,7 @@ metadata:
 spec:
   ingressClassName: ngrok
   rules:
-    - host: NGROK_DOMAIN
+    - host: personally-keen-molly.ngrok-free.app
       http:
         paths:
           - path: /
