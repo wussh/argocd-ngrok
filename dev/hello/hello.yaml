@@ -79,13 +79,13 @@ spec:
     - host: pheasant-closing-wolf.ngrok-free.app
       http:
         paths:
-          # - path: /
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: web
-          #       port:
-          #         number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 80
           # - path: /hello
           #   pathType: Prefix
           #   backend:
@@ -93,6 +93,9 @@ spec:
           #       name: web2
           #       port:
           #         number: 80
+    - host: kocak.ngrok-free.app
+      http:
+        paths:
           - path: /
             pathType: Prefix
             backend:
