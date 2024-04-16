@@ -67,9 +67,4 @@ modules:
     numBuckets: 10
     volumeThreshold: 20
     errorThresholdPercentage: "0.50"
-  oauth:
-    google:
-      emailDomains:
-        - acme.com
-        - ngrok.com
 ---
