@@ -86,13 +86,13 @@ spec:
                 name: web
                 port:
                   number: 80
-          - path: /v2
-            pathType: Prefix
-            backend:
-              service:
-                name: web2
-                port:
-                  number: 80
+          # - path: /v2
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: web2
+          #       port:
+          #         number: 80
 ---
 kind: NgrokModuleSet
 apiVersion: ingress.k8s.ngrok.com/v1alpha1
