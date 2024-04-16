@@ -43,7 +43,7 @@ metadata:
 spec:
   ingressClassName: ngrok
   rules:
-    - host: personally-keen-molly.ngrok-free.app
+    - host: pheasant-closing-wolf.ngrok-free.app
       http:
         paths:
           - path: /
