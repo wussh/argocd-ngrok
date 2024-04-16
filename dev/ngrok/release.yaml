@@ -1,20 +1,44 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: ngrok-ingress-controller
-  namespace: argocd
 spec:
-  destination:
-    namespace: ngrok-ingress-controller
-    server: 'https://kubernetes.default.svc'
-  project: default
-  source:
-    helm:
-      valueFiles:
-        - values.yaml
-    repoURL: 'https://ngrok.github.io/kubernetes-ingress-controller'
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngrok-ingress-controller
+  template:
+    metadata:
+      labels:
+        app: ngrok-ingress-controller
+    spec:
+      containers:
+      - name: ngrok-ingress-controller
+        image: ngrok/kubernetes-ingress-controller
+        imagePullPolicy: IfNotPresent
+        args:
+        - "--apiKey=$(NGROK_API_KEY)"
+        - "--authtoken=$(NGROK_AUTHTOKEN)"
+        env:
+        - name: NGROK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ngrok-credentials
+              key: apiKey
+        - name: NGROK_AUTHTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: ngrok-credentials
+              key: authtoken
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngrok-ingress-controller
+spec:
+  selector:
+    app: ngrok-ingress-controller
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
