@@ -93,16 +93,6 @@ spec:
           #       name: web2
           #       port:
           #         number: 80
-    - host: kocak.ngrok-free.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: game-2048
-                port:
-                  number: 80
 ---
 kind: NgrokModuleSet
 apiVersion: ingress.k8s.ngrok.com/v1alpha1
